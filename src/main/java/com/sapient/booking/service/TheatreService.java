@@ -32,8 +32,15 @@ public class TheatreService {
 
 	public List<Theatre> getAllTheaters() {
 	    return theatreRepository.findAll();
-	}
+	}	
 	
+	public List<Theatre> getTheatresByMovieNameAndCity(String movieName, String city) {
+		 Movie movie = movieRepository.findByMovieName(movieName);
+	    return showRepository.findByMovieAndTheatre_CityName(movie, city)
+	            .stream()
+	            .map(ShowTime::getTheatre)
+	            .collect(Collectors.toList());
+	}
 	
     public List<Theatre> getTheatresByCity(String city) {
         return theatreRepository.findByCityName(city);

@@ -1,6 +1,7 @@
 package com.sapient.booking.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -37,6 +38,10 @@ public class ShowTime {
     @JoinColumn(name = "movie_id")
     private Movie movie;
 
+    private LocalDateTime dateTime;
+    
     private LocalDate date;
+    
     private LocalTime time;
+    
 }

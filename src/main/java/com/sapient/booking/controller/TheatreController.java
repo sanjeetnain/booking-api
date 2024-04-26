@@ -24,27 +24,38 @@ public class TheatreController {
 	@Autowired
 	private TheatreService theatreService;
 	
+	
+	
+	@GetMapping("/theatres")
+    public ResponseEntity<List<Theatre>> getTheatresByMovieNameAndCity(
+            @RequestParam String movieName,          
+            @RequestParam String city) {
+
+        List<Theatre> theatres = theatreService.getTheatresByMovieNameAndCity(movieName,city);
+        return new ResponseEntity<>(theatres, HttpStatus.OK);
+    } 
+	
 	@GetMapping("/")
     public ResponseEntity<List<Theatre>> getAllTheaters() {
         List<Theatre> theaters = theatreService.getAllTheaters();
         return ResponseEntity.ok(theaters);
 	}
 	
+	@GetMapping("/movie")
+	public ResponseEntity<List<Theatre>> getTheatresByMovieNameAndDateAndCity(
+	        @RequestParam String movieName,
+	        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+	        @RequestParam String city) {
+	
+	    List<Theatre> theatres = theatreService.getTheatresByMovieNameAndDateAndCity(movieName, date, city);
+	    return new ResponseEntity<>(theatres, HttpStatus.OK);
+	}
+	
     @GetMapping("/city")
     public ResponseEntity<List<Theatre>> getTheatresByCity(@RequestParam String city) {
         List<Theatre> theatres = theatreService.getTheatresByCity(city);
         return new ResponseEntity<>(theatres, HttpStatus.OK);
-    }
-
-    @GetMapping("/movie")
-    public ResponseEntity<List<Theatre>> getTheatresByMovieNameAndDateAndCity(
-            @RequestParam String movieName,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
-            @RequestParam String city) {
-
-        List<Theatre> theatres = theatreService.getTheatresByMovieNameAndDateAndCity(movieName, date, city);
-        return new ResponseEntity<>(theatres, HttpStatus.OK);
-    }    
+    }  
 
 	@PostMapping("/onboard-theatre")
     public ResponseEntity<Theatre> onboardTheater(@RequestBody Theatre theatre) {

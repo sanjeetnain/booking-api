@@ -24,4 +24,6 @@ public class Theatre {
     private Long id;
     private String theatreName;
     private String cityName;
+    private String address;
+    
 }

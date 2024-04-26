@@ -9,4 +9,6 @@ import com.sapient.booking.model.Movie;
 public interface MovieRepository extends JpaRepository<Movie, Long> {
 
 	Movie findByMovieName(String movieName);
+	
+	Movie findByTheatreId(Long theatreId);
 }

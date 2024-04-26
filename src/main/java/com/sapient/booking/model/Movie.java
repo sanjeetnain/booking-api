@@ -26,7 +26,10 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    private Long theatreId;    
     private String movieName;
     private String genre;
+    private Integer duration;
     private LocalDate releaseDate;
 }

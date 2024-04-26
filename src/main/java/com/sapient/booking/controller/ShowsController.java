@@ -30,7 +30,16 @@ public class ShowsController {
     private ShowTimeService showService;
     @Autowired
     private MovieRepository movieRepository;
-
+    
+    @GetMapping
+    public ResponseEntity<List<ShowTime>> getShowsByDate(
+            @PathVariable Long theatreId,
+            @RequestParam String date){       
+    	LocalDate locaDate = LocalDate.parse(date);    	
+        List<ShowTime> shows = showService.getShowsByTheatreAndDate(theatreId, locaDate);        
+        return new ResponseEntity<>(shows, HttpStatus.OK);
+    }
+    
     @GetMapping("/")
     public ResponseEntity<List<ShowTime>> getShowsByMovieNameAndDateAndCity(
             @RequestParam String movieName,
