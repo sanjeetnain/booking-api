@@ -51,7 +51,7 @@ public class ShowsController {
         return new ResponseEntity<>(shows, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/addShow")
     public ResponseEntity<ShowTime> createShow(@RequestBody ShowTime show) {
         ShowTime createdShow = showService.createShow(show);
         return new ResponseEntity<>(createdShow, HttpStatus.CREATED);

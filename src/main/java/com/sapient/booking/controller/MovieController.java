@@ -25,15 +25,15 @@ public class MovieController {
 	private MovieService movieService;
 	
 	@PostMapping("/movie")
-    public ResponseEntity<Theatre> onboardTheater(@RequestBody Movie movie) {
-		Theatre savedMovie = movieService.saveMovie(movie);
+    public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
+		Movie savedMovie = movieService.saveMovie(movie);
         return ResponseEntity.ok(savedMovie);
     }
 	
 	@GetMapping
-    public List<Movie> getAllMovies() {
-        // Implement logic to retrieve all movies
-		return null;
+	ResponseEntity<List<Movie>> getAllMovies() {
+		 List<Movie> movies = movieService.getAllMovies();
+	        return ResponseEntity.ok(movies);
     }
  
 	@GetMapping("/{id}")

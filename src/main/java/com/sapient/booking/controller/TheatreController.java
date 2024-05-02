@@ -22,15 +22,12 @@ import com.sapient.booking.service.TheatreService;
 public class TheatreController {
 
 	@Autowired
-	private TheatreService theatreService;
-	
-	
+	private TheatreService theatreService;	
 	
 	@GetMapping("/theatres")
     public ResponseEntity<List<Theatre>> getTheatresByMovieNameAndCity(
             @RequestParam String movieName,          
             @RequestParam String city) {
-
         List<Theatre> theatres = theatreService.getTheatresByMovieNameAndCity(movieName,city);
         return new ResponseEntity<>(theatres, HttpStatus.OK);
     } 
